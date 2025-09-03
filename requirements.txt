@@ -1,0 +1,13 @@
+# For building the web server and handling requests
+fastapi
+uvicorn[standard]
+python-multipart
+
+# For interacting with the Gemini API
+google-generativeai
+
+# For managing environment variables (API keys, etc.)
+python-dotenv
+
+# For reading PDF files
+PyPDF2
