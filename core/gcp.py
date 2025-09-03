@@ -5,7 +5,7 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 import PyPDF2
 import io
-import asyncio  # Import asyncio for non-blocking sleep
+import asyncio  
 
 # Load environment variables from the .env file
 load_dotenv()

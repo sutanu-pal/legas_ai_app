@@ -11,7 +11,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Allow all origins for development
+
 origins = ["*"]
 
 app.add_middleware(
