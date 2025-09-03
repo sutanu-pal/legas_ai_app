@@ -3,38 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal AI Document Analyzer</title>
+    <title>LexiGuard - AI Legal Document Analyzer</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Legal AI Document Analyzer</h1>
-            <p>Upload a PDF contract or agreement to get a simple, clear, and intelligent analysis.</p>
+        <header class="main-header">
+            <i class="fas fa-shield-halved logo"></i>
+            <h1>LexiGuard AI</h1>
+            <p>Your intelligent partner for demystifying legal documents.</p>
         </header>
-        
+
         <main>
-            <div class="upload-section">
-                <input type="file" id="fileInput" accept=".pdf" style="display: none;">
-                <button id="uploadBtn">Choose PDF File</button>
-                <span id="fileName">No file selected</span>
+            <!-- Upload Section -->
+            <div id="upload-area" class="upload-area">
+                <i class="fas fa-file-upload upload-icon"></i>
+                <p><b>Drag & Drop</b> your PDF here, or</p>
+                <button id="browseBtn">Browse Files</button>
+                <input type="file" id="fileInput" accept=".pdf" hidden>
+            </div>
+
+            <!-- File Info & Analysis Button -->
+            <div id="file-info" class="file-info hidden">
+                <div class="file-details">
+                    <i class="fas fa-file-pdf"></i>
+                    <span id="fileName"></span>
+                </div>
+                <button id="removeFileBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <button id="analyzeBtn" class="analyze-btn" disabled>Analyze Document</button>
+
+            <!-- Loading State -->
+            <div id="loading" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p>LexiGuard is analyzing your document...<br>This may take a moment.</p>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-container" class="results-container hidden">
+                <!-- Analysis will be dynamically inserted here -->
             </div>
             
-            <button id="analyzeBtn" disabled>Analyze Document</button>
-
-            <div id="loading" class="hidden">
-                <div class="spinner"></div>
-                <p>Analyzing your document... This may take a moment.</p>
-            </div>
-
-            <div id="results" class="hidden">
-                <h2>Analysis Report</h2>
-                <div id="analysis-content"></div>
-            </div>
-            <div id="error" class="hidden"></div>
+            <!-- Error Display -->
+            <div id="error" class="error-message hidden"></div>
         </main>
+        
+        <footer>
+            <p>Disclaimer: This is an AI-generated analysis and not a substitute for professional legal advice.</p>
+        </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- To render Markdown -->
+
+    <!-- Marked.js for rendering Markdown from Gemini -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
