@@ -9,6 +9,8 @@
 This project provides a secure, private, and user-friendly platform to analyze legal texts, highlight potential risks, and explain critical clauses in plain English.
 
  <img width="1804" height="844" alt="image" src="https://github.com/user-attachments/assets/743b43da-2450-4588-9952-5c62cef2d069" />
+ <img width="1894" height="858" alt="image" src="https://github.com/user-attachments/assets/8bc29cc0-b473-4c2b-b061-b8e0b789eefc" />
+
 
 
 ***
