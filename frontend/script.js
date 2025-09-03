@@ -1,51 +1,73 @@
-// Get references to the HTML elements
-const fileInput = document.getElementById('fileInput');
-const analyzeButton = document.getElementById('analyzeButton');
-const statusDiv = document.getElementById('status');
-const resultPre = document.getElementById('analysisResult');
+// frontend/script.js
 
-// Add an event listener to the button
-analyzeButton.addEventListener('click', async () => {
-    const file = fileInput.files[0];
+document.addEventListener('DOMContentLoaded', () => {
+    const fileInput = document.getElementById('fileInput');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const fileNameSpan = document.getElementById('fileName');
+    const loadingDiv = document.getElementById('loading');
+    const resultsDiv = document.getElementById('results');
+    const analysisContentDiv = document.getElementById('analysis-content');
+    const errorDiv = document.getElementById('error');
 
-    // Check if a file is selected
-    if (!file) {
-        statusDiv.textContent = 'Please select a PDF file first.';
-        return;
-    }
+    // Trigger the hidden file input when the custom button is clicked
+    uploadBtn.addEventListener('click', () => {
+        fileInput.click();
+    });
 
-    // Prepare the file for sending to the backend
-    const formData = new FormData();
-    formData.append('file', file);
+    // Update the file name display and enable the analyze button
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            fileNameSpan.textContent = fileInput.files[0].name;
+            analyzeBtn.disabled = false;
+        } else {
+            fileNameSpan.textContent = 'No file selected';
+            analyzeBtn.disabled = true;
+        }
+    });
 
-    // Update status and disable the button
-    statusDiv.textContent = 'Uploading and analyzing... Please wait.';
-    resultPre.textContent = '';
-    analyzeButton.disabled = true;
-
-    try {
-        // Send the request to our FastAPI backend
-        const response = await fetch('http://127.0.0.1:8000/analyze/', {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (!response.ok) {
-            throw new Error(`Server responded with status: ${response.status}`);
+    // Handle the analysis process
+    analyzeBtn.addEventListener('click', async () => {
+        const file = fileInput.files[0];
+        if (!file) {
+            alert('Please select a file first.');
+            return;
         }
 
-        const data = await response.json();
-        
-        // Display the result
-        statusDiv.textContent = 'Analysis complete!';
-        resultPre.textContent = data.analysis;
+        // Reset UI
+        loadingDiv.classList.remove('hidden');
+        resultsDiv.classList.add('hidden');
+        errorDiv.classList.add('hidden');
+        analyzeBtn.disabled = true;
 
-    } catch (error) {
-        console.error('Error:', error);
-        statusDiv.textContent = 'An error occurred. Please check the console and make sure the backend server is running.';
-        resultPre.textContent = `Error details: ${error.message}`;
-    } finally {
-        // Re-enable the button
-        analyzeButton.disabled = false;
-    }
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            // Call your FastAPI backend
+            const response = await fetch('http://127.0.0.1:8000/analyze/', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                // Handle errors from the API (e.g., 400, 500)
+                throw new Error(result.detail || 'An unknown error occurred.');
+            }
+            
+            // The prompt asks Gemini for Markdown, so we use a library to render it.
+            analysisContentDiv.innerHTML = marked.parse(result.analysis);
+            resultsDiv.classList.remove('hidden');
+
+        } catch (error) {
+            errorDiv.textContent = `Error: ${error.message}`;
+            errorDiv.classList.remove('hidden');
+        } finally {
+            // Clean up
+            loadingDiv.classList.add('hidden');
+            analyzeBtn.disabled = false;
+        }
+    });
 });

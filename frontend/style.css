@@ -1,67 +1,117 @@
+/* frontend/style.css */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f0f2f5;
-    color: #1c1e21;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 2rem;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
 }
 
 .container {
-    background-color: #ffffff;
-    padding: 2rem 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
     width: 100%;
-    max-width: 700px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header {
     text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 h1 {
-    color: #0d6efd;
+    color: #1a73e8;
 }
 
-.upload-box {
-    margin: 2rem 0;
-}
-
-input[type="file"] {
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 6px;
+.upload-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 button {
-    background-color: #0d6efd;
-    color: white;
-    border: none;
     padding: 10px 20px;
-    border-radius: 6px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
-    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s;
 }
 
-button:disabled {
-    background-color: #6c757d;
+#uploadBtn {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+}
+
+#analyzeBtn {
+    width: 100%;
+    background-color: #1a73e8;
+    color: white;
+    padding: 12px;
+}
+
+#analyzeBtn:disabled {
+    background-color: #ccc;
     cursor: not-allowed;
 }
 
-#status {
-    margin-top: 1rem;
-    font-weight: bold;
-    color: #6c757d;
+#fileName {
+    font-style: italic;
+    color: #555;
 }
 
-.results-box {
+.hidden {
+    display: none;
+}
+
+#loading {
+    text-align: center;
+    padding: 2rem;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1a73e8;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#results {
     margin-top: 2rem;
-    text-align: left;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    padding: 1.5rem;
-    white-space: pre-wrap; /* Allows text to wrap */
-    word-wrap: break-word;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+}
+
+#analysis-content {
+    background: #f8f9fa;
+    border-left: 3px solid #1a73e8;
+    padding: 1rem;
+    border-radius: 5px;
+    white-space: pre-wrap; /* Helps in formatting the text */
+    line-height: 1.6;
+}
+
+#error {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #fbeae5;
+    color: #c9340c;
+    border: 1px solid #c9340c;
+    border-radius: 5px;
 }
