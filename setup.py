@@ -17,7 +17,7 @@ def get_requirements(file_path: str) -> List[str]:
     return requirements
 
 setup(
-    name="mlproject",
+    name="Hac2skill project",
     version='0.0.1',
     author='sutanu',
     author_email='sutanupal0@gmail.com',
