@@ -68,8 +68,5 @@ It does not provide professional legal advice. For **any legal concerns**, alway
 
 ---
 
-👩‍💻 Built with ❤️ using **FastAPI + Google Gemini AI**
-```
 
-***
 
