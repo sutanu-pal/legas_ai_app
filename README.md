@@ -22,7 +22,8 @@ You can **ask questions, get summaries, and identify risks** — all explained i
 
 
 <img width="1751" height="697" alt="image" src="https://github.com/user-attachments/assets/844a590e-9c76-42bf-ae29-cfb3c0826da8" />
-![WhatsApp Image 2025-09-04 at 23 20 54_c790f006](https://github.com/user-attachments/assets/d12f3c1d-c355-4369-adff-a13034c02d26)
+<img width="1381" height="833" alt="image" src="https://github.com/user-attachments/assets/c7461ae5-294a-4d01-8d56-588e197e4f7c" />
+
 
 
 
