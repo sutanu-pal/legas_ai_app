@@ -1,51 +1,84 @@
-# File: main.py
-
+import uvicorn
+import uuid
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from core.gcp import configure_api_key, analyze_document_from_bytes
-import uvicorn
+from pydantic import BaseModel
+from typing import List, Dict
+from contextlib import asynccontextmanager
 
+# Import your functions from gcp.py
+from core.gcp import configure_api_key, get_copilot_response_async
+
+# --- Pydantic Models for API validation ---
+class ChatRequest(BaseModel):
+    document_id: str
+    message: str
+    history: List[Dict]
+
+# --- FastAPI Application Setup ---
 app = FastAPI(
-    title="Legal Document Analysis API",
-    description="An API to analyze legal documents using Gemini AI.",
-    version="1.0.0"
+    title="Legal Document Copilot API",
+    description="An API to interact with a legal document using Gemini AI.",
+    version="3.0.0" # Final Version
 )
 
-
-origins = ["*"]
-
+# --- CRUCIAL CORS CONFIGURATION ---
+# This is the most permissive setting. It tells the browser to allow
+# requests from ANY origin.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-def startup_event():
+# --- Lifespan event to configure API key on startup ---
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("🚀 Application starting up...")
     configure_api_key()
+    print("✅ Application startup complete.")
+    yield
 
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to the Legal AI Analyzer API!"}
+app.router.lifespan_context = lifespan
 
-@app.post("/analyze/")
-async def analyze_document_endpoint(file: UploadFile = File(...)):
-    if not file.filename.endswith('.pdf'):
-        raise HTTPException(status_code=400, detail="Invalid file type. Please upload a PDF.")
+# --- In-memory storage for the MVP ---
+document_storage = {}
 
-    try:
-        file_bytes = await file.read()
-        
-        # --- KEY CHANGE: Await the async function ---
-        analysis_result = await analyze_document_from_bytes(file_bytes)
-        
-        return {"filename": file.filename, "analysis": analysis_result}
-        
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
+# --- API Endpoints ---
+@app.post("/upload")
+async def upload_document(file: UploadFile = File(...)):
+    if file.content_type not in ["application/pdf", "text/plain"]:
+        raise HTTPException(status_code=400, detail="Only PDF or TXT files are supported.")
+    
+    document_id = str(uuid.uuid4())
+    content = await file.read()
+    
+    document_storage[document_id] = {
+        "content": content,
+        "mime_type": file.content_type
+    }
+    
+    print(f"📄 Document uploaded with ID: {document_id}")
+    return {"document_id": document_id, "filename": file.filename}
+
+@app.post("/chat")
+async def chat_with_document(request: ChatRequest):
+    if request.document_id not in document_storage:
+        raise HTTPException(status_code=404, detail="Document not found. Please upload again.")
+    
+    document_data = document_storage[request.document_id]
+    
+    response_text = await get_copilot_response_async(
+        doc_bytes=document_data["content"],
+        doc_mime_type=document_data["mime_type"],
+        user_message=request.message,
+        chat_history=request.history
+    )
+    
+    return {"reply": response_text}
 
 if __name__ == "__main__":
-    # Ensure you have 'python-multipart' installed: pip install python-multipart
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+

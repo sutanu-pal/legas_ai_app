@@ -3,60 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LexiGuard - AI Legal Document Analyzer</title>
+    <title>LexiGuard - AI Legal Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header class="main-header">
-            <i class="fas fa-shield-halved logo"></i>
-            <h1>LexiGuard AI</h1>
-            <p>Your intelligent partner for demystifying legal documents.</p>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>LexiGuard🛡</h1>
+            <p>Your AI-Powered Legal Document Assistant</p>
         </header>
 
-        <main>
-            <!-- Upload Section -->
-            <div id="upload-area" class="upload-area">
-                <i class="fas fa-file-upload upload-icon"></i>
-                <p><b>Drag & Drop</b> your PDF here, or</p>
-                <button id="browseBtn">Browse Files</button>
-                <input type="file" id="fileInput" accept=".pdf" hidden>
-            </div>
-
-            <!-- File Info & Analysis Button -->
-            <div id="file-info" class="file-info hidden">
-                <div class="file-details">
-                    <i class="fas fa-file-pdf"></i>
-                    <span id="fileName"></span>
-                </div>
-                <button id="removeFileBtn"><i class="fas fa-times"></i></button>
-            </div>
-            <button id="analyzeBtn" class="analyze-btn" disabled>Analyze Document</button>
-
-            <!-- Loading State -->
-            <div id="loading" class="loading-state hidden">
-                <div class="spinner"></div>
-                <p>LexiGuard is analyzing your document...<br>This may take a moment.</p>
-            </div>
-
-            <!-- Results Section -->
-            <div id="results-container" class="results-container hidden">
-                <!-- Analysis will be dynamically inserted here -->
-            </div>
-            
-            <!-- Error Display -->
-            <div id="error" class="error-message hidden"></div>
-        </main>
+        <!-- Upload Section -->
+        <div class="upload-section" id="upload-section">
+            <p class="upload-instructions">Start by uploading your legal document (PDF or TXT). Your file is processed securely and is never stored.</p>
+            <input type="file" id="file-upload" accept=".pdf,.txt" hidden>
+            <button class="upload-button" id="upload-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                <span>Choose File</span>
+            </button>
+            <p class="upload-status" id="upload-status"></p>
+        </div>
         
-        <footer>
-            <p>Disclaimer: This is an AI-generated analysis and not a substitute for professional legal advice.</p>
+        <!-- Chat Section -->
+        <div class="chat-container" id="chat-container" style="display: none;">
+            <div class="chat-header" id="chat-header"></div>
+            <div class="chat-box" id="chat-box">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Ask a question about the document...">
+                <button id="send-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </div>
+        </div>
+        
+        <footer class="app-footer">
+            <p>Disclaimer: LexiGuard provides an AI analysis and is not a substitute for professional legal advice.</p>
         </footer>
     </div>
 
-    <!-- Marked.js for rendering Markdown from Gemini -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
