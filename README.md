@@ -61,8 +61,8 @@ legal-ai-app/
 
 ## ## Live Demo 🚀
 
-* **Frontend (Vercel):** `https://legas-ai-app.vercel.app/`
-* **Backend (Render):** `https://legas-ai-app.onrender.com`
+* **Frontend (Vercel):** https://legas-ai-app.vercel.app/
+* **Backend (Render):** https://legas-ai-app.onrender.com
 
 
 ---
