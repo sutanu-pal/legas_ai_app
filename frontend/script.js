@@ -1,4 +1,8 @@
-const API_BASE_URL = "http://127.0.0.1:8000";
+
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE_URL = isLocal
+  ? 'http://127.0.0.1:8000' // URL for local testing
+  : 'https://your-legal-ai-api.onrender.com'; // <-- PASTE YOUR LIVE RENDER URL HERE
 
 // --- DOM Element References ---
 const fileUploadInput = document.getElementById('file-upload');
