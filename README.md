@@ -1,38 +1,43 @@
 
+***🛡️ LexiGuard - Your AI-Powered Legal Document Assistant***
 
-***LexiGuard AI: Legal Document Analyzer***
+LexiGuard is a **smart, user-friendly web application** designed to **demystify complex legal documents**.  
+Powered by **Google's Gemini AI**, it allows users to securely upload contracts, policies, or terms of service and interact with them through a conversational interface.  
+
+You can **ask questions, get summaries, and identify risks** — all explained in plain, understandable language.
+
+---
+
+## ✨ Features
+
+- 📄 **Document Upload**: Securely upload **PDF** and **TXT** legal documents directly in the browser.  
+- 🤖 **Conversational AI**: Chat with your document — ask context-aware questions and get clear answers.  
+- 🔍 **AI-Powered Analysis**: Request summaries, explanations of key clauses, and identification of potential red flags.  
+- ✨ **Modern & Responsive UI**: Clean, intuitive, and mobile-friendly design.  
+- 🔒 **Secure & Private**: Your documents are processed **in memory per session** and are **never stored on the server**.  
+
+---
+
+## 🖼️ Screenshots
+
+
+<img width="1751" height="697" alt="image" src="https://github.com/user-attachments/assets/844a590e-9c76-42bf-ae29-cfb3c0826da8" />
+<img width="1381" height="833" alt="image" src="https://github.com/user-attachments/assets/c7461ae5-294a-4d01-8d56-588e197e4f7c" />
 
 
 
-**LexiGuard is an intelligent tool designed to demystify complex legal documents. By leveraging Google's Gemini generative AI, it transforms dense legal jargon into clear, actionable insights, empowering users to understand contracts, agreements, and terms of service with confidence.**
 
-This project provides a secure, private, and user-friendly platform to analyze legal texts, highlight potential risks, and explain critical clauses in plain English.
+---
 
- <img width="1804" height="844" alt="image" src="https://github.com/user-attachments/assets/743b43da-2450-4588-9952-5c62cef2d069" />
- <img width="1894" height="858" alt="image" src="https://github.com/user-attachments/assets/8bc29cc0-b473-4c2b-b061-b8e0b789eefc" />
+## 🥞 Technology Stack
 
+| Area       | Technology     |
+|------------|---------------|
+| Backend    | Python + FastAPI |
+| AI         | Google Gemini API |
+| Frontend   | HTML5, CSS3, JavaScript |
 
-
-***
-
-## 🚀 Key Features
-
-*   **AI-Powered Analysis**: Utilizes the Google Gemini 1.5 Flash model for fast and accurate document interpretation.
-*   **Simple Summaries**: Generates concise summaries of a document's purpose.
-*   **Risk & Obligation Highlighting**: Automatically identifies potential risks, one-sided clauses, and key responsibilities for all parties.
-*   **Jargon Buster**: Defines confusing legal terms in simple, everyday language.
-*   **Secure & Private**: Analyzes documents on the fly without storing them, ensuring user privacy.
-*   **Modern Interface**: Features a clean, intuitive drag-and-drop interface for uploading PDF documents.
-*   **Asynchronous Backend**: Built with FastAPI for high-performance, non-blocking request handling.
-*   **Robust Error Handling**: Includes automatic retries with exponential backoff to manage API rate limits gracefully.
-
-## 🛠️ Tech Stack
-
-*   **Backend**: Python, FastAPI, Uvicorn
-*   **AI**: Google Generative AI (Gemini 1.5 Flash)
-*   **PDF Processing**: PyPDF2
-*   **Frontend**: HTML5, CSS3, JavaScript
-*   **Dependencies**: python-dotenv, python-multipart, google-generativeai
+---
 
 ## 📂 Project Structure
 
@@ -40,22 +45,28 @@ This project provides a secure, private, and user-friendly platform to analyze l
 legal-ai-app/
 │
 ├── core/
-│   └── gcp.py              # Core logic for PDF extraction and Gemini API interaction
+│   └── gcp.py              # PDF extraction & Gemini API interaction
 │
 ├── frontend/
-│   ├── index.html          # Main HTML file for the user interface
-│   ├── style.css           # Styling for the frontend
-│   └── script.js           # Client-side logic, API calls, and DOM manipulation
+│   ├── index.html          # UI entry point
+│   ├── style.css           # Styling
+│   └── script.js           # Client-side logic
 │
-├── .env                    # Environment variables (contains API key)
-├── .gitignore              # Files and directories to be ignored by Git
-├── main.py                 # FastAPI application server
-├── README.md               # This file
-└── requirements.txt        # Python dependencies
+├── .env                    # Environment variables (API key)
+├── .gitignore              # Ignored files for Git
+├── main.py                 # FastAPI backend
+├── README.md               # Documentation
+└── requirements.txt        # Dependencies
 ```
 
-***
+---
 
+## ⚠️ Disclaimer
+
+LexiGuard is an **AI-powered tool** and is intended **for informational purposes only**.  
+It does not provide professional legal advice. For **any legal concerns**, always consult with a **qualified attorney**.
+
+---
 
 
 
