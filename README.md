@@ -1,4 +1,3 @@
-
 #🛡️ LexiGuard - Your AI-Powered Legal Document Assistant
 
 LexiGuard is a **smart, user-friendly web application** designed to **demystify complex legal documents**.  
