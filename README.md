@@ -1,4 +1,4 @@
-#🛡️ LexiGuard - Your AI-Powered Legal Document Assistant
+***🛡️ LexiGuard - Your AI-Powered Legal Document Assistant***
 
 LexiGuard is a **smart, user-friendly web application** designed to **demystify complex legal documents**.  
 Powered by **Google's Gemini AI**, it allows users to securely upload contracts, policies, or terms of service and interact with them through a conversational interface.  
